@@ -5,7 +5,9 @@
 {{ description }}
 
 [![Lint](https://github.com/{{ username }}/{{ projectname }}/actions/workflows/lint.yaml/badge.svg)](https://github.com/{{ username }}/{{ projectname }}/actions/workflows/lint.yaml)
-[![Test](https://github.com/{{ username }}/{{ projectname }}/actions/workflows/test.yaml/badge.svg)](https://github.com/{{ username }}/{{ projectname }}/actions/workflows/test.yaml)
+{%- if deploy %}
+[![Deploy](https://github.com/{{ username }}/{{ projectname }}/actions/workflows/deploy.yaml/badge.svg)](https://github.com/{{ username }}/{{ projectname }}/actions/workflows/deploy.yaml)
+{%- endif %}
 
 </div>
 
