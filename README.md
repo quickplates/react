@@ -42,10 +42,9 @@ copier gh:quickplates/react .
 - clean UI with [`Mantine`](https://mantine.dev)
 - optimized custom [`Docker`](https://www.docker.com) images
 - automatic releases on `GitHub Container Registry`
+- automatic deployments to [`GitHub Pages`](https://pages.github.com)
 - running tasks with [`Task`](https://taskfile.dev)
 - formatting and linting with [`Trunk`](https://trunk.io)
-- easy to write and nice looking documentation
-  with [`Docusaurus`](https://docusaurus.io)
 - continuous integration with [`GitHub Actions`](https://github.com/features/actions)
 
 ## 💻 Contributing and Development
