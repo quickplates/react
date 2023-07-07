@@ -100,6 +100,7 @@
             packages = [
               node
               pnpm
+              task
             ];
           };
 
