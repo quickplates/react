@@ -51,16 +51,16 @@ COPY ./scripts/shell.sh ./scripts/shell.sh
 SHELL ["./scripts/shell.sh"]
 
 # Copy root package files
-COPY package.json pnpm-lock.yaml .npmrc ./
+COPY package.json pnpm-lock.yaml .npmrc Taskfile.dist.yaml ./
 
 # Install root dependencies
-RUN pnpm install --frozen-lockfile
+RUN task install -- --frozen-lockfile
 
 # Copy everything else
 COPY . .
 
 # Build
-RUN pnpm run build
+RUN task build
 
 # Ubuntu is probably the safest choice
 FROM ubuntu:23.04 AS runtime
