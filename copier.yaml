@@ -1,0 +1,39 @@
+---
+# Questions
+
+username:
+  type: str
+  help: Your GitHub username
+
+projectname:
+  type: str
+  help: The name of your project
+
+envprefix:
+  type: str
+  help: The prefix for your environment variables
+  default: "{{ projectname | upper | replace('-', '_') }}"
+
+description:
+  type: str
+  help: A short description of your project
+
+favicon:
+  type: str
+  help: The emoji you want to use as your favicon
+  default: ⚛️
+
+registry:
+  type: bool
+  help: Whether you want to publish Docker images to a GitHub Container Registry
+  default: true
+
+deploy:
+  type: bool
+  help: Whether you want to deploy your project to GitHub Pages
+  default: true
+
+# Configuration
+
+_subdirectory: src
+_answers_file: .copier-answers.yaml
