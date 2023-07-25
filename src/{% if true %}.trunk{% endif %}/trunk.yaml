@@ -21,7 +21,6 @@ lint:
       paths:
         # Ignore copier answers file
         - "**/.copier-answers.yaml"
-        - "**/.copier-answers.yml"
   definitions:
     # Nix formatting check (local)
     - name: nix-fmt-check
@@ -29,12 +28,16 @@ lint:
       run_when: [ci, cli]
       commands:
         - output: pass_fail
+          read_output_from: stderr
           run: >-
             nix
+            --accept-flake-config
             --extra-experimental-features 'nix-command flakes'
+            --no-warn-dirty
             fmt
             --
-            --check path://${target}
+            --check
+            path://${workspace}/${target}
           success_codes: [0, 1]
     # Nix flake check (local)
     - name: nix-flake-check
@@ -42,9 +45,13 @@ lint:
       run_when: [ci, cli]
       commands:
         - output: pass_fail
+          target: .
+          read_output_from: stderr
           run: >-
             nix
+            --accept-flake-config
             --extra-experimental-features 'nix-command flakes'
+            --no-warn-dirty
             flake
             check
             path://${workspace}
@@ -71,7 +78,7 @@ lint:
     - actionlint@1.6.24
     # SVG formatting
     - svgo@3.0.2
-    # JavaScript/TypeScript linting
+    # JavaScript linting
     - eslint@8.41.0
     # Nix formatting check
     - nix-fmt-check@SYSTEM

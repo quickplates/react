@@ -34,22 +34,22 @@ copier gh:quickplates/react .
 - fully reproducible development environments with
   [`Dev Containers`](https://code.visualstudio.com/docs/remote/containers)
   and [`Nix`](https://nixos.org)
-- package management with [`pnpm`](https://pnpm.io)
+- package management with [`npm`](https://www.npmjs.com)
 - embracing [`TypeScript`](https://www.typescriptlang.org) to the fullest
 - building with [`Vite`](https://vitejs.dev)
 - routing with [`React Router`](https://reactrouter.com)
 - state management with [`Zustand`](https://docs.pmnd.rs/zustand)
 - clean UI with [`Mantine`](https://mantine.dev)
 - optimized custom [`Docker`](https://www.docker.com) images
-- automatic releases on `GitHub Container Registry`
+- automatic releases on [`GitHub Container Registry`](https://ghcr.io)
 - automatic deployments to [`GitHub Pages`](https://pages.github.com)
 - running tasks with [`Task`](https://taskfile.dev)
 - formatting and linting with [`Trunk`](https://trunk.io)
 - continuous integration with [`GitHub Actions`](https://github.com/features/actions)
 
-## 💻 Contributing and Development
+## 💻 Development
 
-Read more about how to contribute and develop the project
+Read more about how to develop the project
 [here](https://github.com/quickplates/react/blob/main/CONTRIBUTING.md).
 
 If you have any ideas on how to improve this template,

@@ -7,7 +7,7 @@ username:
 
 projectname:
   type: str
-  help: The name of your project
+  help: The name of the project
 
 envprefix:
   type: str
@@ -16,17 +16,18 @@ envprefix:
 
 description:
   type: str
-  help: A short description of your project
+  help: A short description of the project
 
-favicon:
-  type: str
-  help: The emoji you want to use as your favicon
-  default: ⚛️
+releases:
+  type: bool
+  help: Whether you plan to make releases
+  default: true
 
 registry:
   type: bool
   help: Whether you want to publish Docker images to a GitHub Container Registry
   default: true
+  when: "{{ releases }}"
 
 deploy:
   type: bool
