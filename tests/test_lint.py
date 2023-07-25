@@ -15,7 +15,7 @@ def data() -> dict[str, str]:
         "projectname": "react-example",
         "envprefix": "REACT_EXAMPLE",
         "description": "React project example ⚛️",
-        "favicon": "⚛️",
+        "releases": "true",
         "registry": "true",
         "deploy": "true",
     }
@@ -47,7 +47,7 @@ def copied_template_directory(
 
 
 def test_lint(copied_template_directory: Path) -> None:
-    """Test that the template can be linted without errors."""
+    """Test that the project can be linted without errors."""
 
     with CWD(copied_template_directory):
         local.cmd.nix(

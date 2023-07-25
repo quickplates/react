@@ -49,6 +49,11 @@ jobs:
         with:
           path: ${{ env.TRUNK_CACHE_DIR }}
           key: lint-trunk
+      - name: Setup modules cache
+        uses: actions/cache@v3.3.1
+        with:
+          path: node_modules
+          key: lint-modules
       - name: Install Nix
         uses: cachix/install-nix-action@v21
         with:
@@ -61,6 +66,7 @@ jobs:
           nix-store
           --import
           < ${{ env.NIX_CACHE_DIR }}/archive.nar
+      # If running on pull request, compare against base branch
       - name: Trunk Check
         if: github.event_name == 'pull_request'
         env:
@@ -77,6 +83,7 @@ jobs:
           --ci
           --upstream
           ${{ github.event.pull_request.base.sha }}
+      # Else, compare against main branch
       - name: Trunk Check
         if: github.event_name != 'pull_request'
         env:

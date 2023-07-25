@@ -30,9 +30,7 @@ tasks:
   fmt:
     desc: Format files
     cmds:
-      - task: install
-        vars:
-          CLI_ARGS: ""
+      - task: install-internal
       - >
         trunk
         fmt
@@ -40,148 +38,140 @@ tasks:
   lint:
     desc: Lint files
     cmds:
-      - task: install
-        vars:
-          CLI_ARGS: ""
+      - task: install-internal
       - >
         trunk
         check
         {{ .CLI_ARGS }}
   remove-node-modules:
     desc: Remove node_modules
-    internal: true
     cmds:
       - >
         rm
         --recursive
         --force
-        ./node_modules
+        ./node_modules/
     status:
       - >
         test
         '!'
         -d
-        ./node_modules
-  remove-pnpm-store:
-    desc: Remove local pnpm store
-    internal: true
-    cmds:
-      - >
-        rm
-        --recursive
-        --force
-        ./.pnpm-store
-    status:
-      - >
-        test
-        '!'
-        -d
-        ./.pnpm-store
-  prune:
-    desc: Remove everything except caches
-    cmds:
-      - defer:
-          task: remove-node-modules
-      - defer:
-          task: clean
-  purge:
-    desc: Remove everything
-    cmds:
-      - defer:
-          task: remove-pnpm-store
-      - defer:
-          task: prune
-  install:
-    desc: Install dependencies
-    sources:
-      - "./package.json"
-      - "./pnpm-lock.yaml"
-      - ".npmrc"
-      - ./flake.lock
-      - ./*.nix
-      - ./Taskfile.dist.{yaml,yml}
-      - ./{taskfile,Taskfile}.{yaml,yml}
-    generates:
-      - "./node_modules/**/*"
-      - "./.pnpm-store/**/*"
-    cmds:
-      - >
-        pnpm
-        install
-        {{ .CLI_ARGS }}
-  dev:
-    desc: Run all apps in development mode
-    interactive: true
-    cmds:
-      - task: install
-        vars:
-          CLI_ARGS: ""
-      - >
-        pnpm
-        run
-        dev
-        --
-        {{ .CLI_ARGS }}
-  build-internal:
-    desc: Build all apps
-    internal: true
-    sources:
-      - "./src/**/*"
-      - "./public/**/*"
-      - "./index.html"
-      - "./tsconfig.json"
-      - "./vite.config.ts"
-      - ./flake.lock
-      - ./*.nix
-      - ./Taskfile.dist.{yaml,yml}
-      - ./{taskfile,Taskfile}.{yaml,yml}
-    generates:
-      - "./build/**/*"
-    cmds:
-      - >
-        pnpm
-        run
-        build
-        --
-        {{ .CLI_ARGS }}
-  build:
-    desc: Build all apps
-    cmds:
-      - task: install
-        vars:
-          CLI_ARGS: ""
-      - task: build-internal
+        ./node_modules/
   clean:
-    desc: Remove build outputs
+    desc: Clean build outputs
     cmds:
       - >
-        pnpm
-        run
-        clean
-        --
-        {{ .CLI_ARGS }}
+        rm
+        --recursive
+        --force
+        ./build/
     status:
       - >
         test
         '!'
         -d
         ./build/
-  update:
-    desc: Update dependencies
+  purge:
+    desc: Clean everything
+    cmds:
+      - defer:
+          task: clean
+      - defer:
+          task: remove-node-modules
+  install:
+    desc: Install dependencies
+    sources:
+      - ./package.json
+      - ./package-lock.json
+      - ./flake.lock
+      - ./*.nix
+      - ./Taskfile.dist.{yaml,yml}
+      - ./{taskfile,Taskfile}.{yaml,yml}
+    generates:
+      - ./node_modules/**/*
+    cmds:
+      - >
+        npm
+        install
+        {{ .CLI_ARGS }}
+  install-internal:
+    desc: Install dependencies quietly
+    internal: true
     cmds:
       - task: install
         vars:
-          CLI_ARGS: ""
+          CLI_ARGS: >
+            --prefer-offline
+            --no-audit
+            --no-fund
+            --quiet
+            --no-progress
+  ci:
+    desc: Clean install dependencies
+    sources:
+      - ./package.json
+      - ./package-lock.json
+      - ./flake.lock
+      - ./*.nix
+      - ./Taskfile.dist.{yaml,yml}
+      - ./{taskfile,Taskfile}.{yaml,yml}
+    generates:
+      - ./node_modules/**/*
+    cmds:
       - >
-        pnpm
+        npm
+        ci
+        {{ .CLI_ARGS }}
+  dev:
+    desc: Run in development mode
+    interactive: true
+    cmds:
+      - task: install-internal
+      - >
+        npm
+        run
+        dev
+        --
+        {{ .CLI_ARGS }}
+  build-internal:
+    desc: Build outputs
+    internal: true
+    sources:
+      - ./src/**/*
+      - ./public/**/*
+      - ./index.html
+      - ./tsconfig.json
+      - ./vite.config.ts
+      - ./flake.lock
+      - ./*.nix
+      - ./Taskfile.dist.{yaml,yml}
+      - ./{taskfile,Taskfile}.{yaml,yml}
+    generates:
+      - ./build/**/*
+    cmds:
+      - >
+        npm
+        run
+        build
+        --
+        {{ .CLI_ARGS }}
+  build:
+    desc: Build outputs
+    cmds:
+      - task: install-internal
+      - task: build-internal
+  update:
+    desc: Update dependencies
+    cmds:
+      - task: install-internal
+      - >
+        npm
         run
         update
         {{ .CLI_ARGS }}
-      - task: install
-        vars:
-          CLI_ARGS: ""
+      - task: install-internal
   docker:
-    desc: Run all apps with Docker Compose
+    desc: Run in docker container
     interactive: true
     cmds:
       - >
@@ -191,12 +181,4 @@ tasks:
         --build
         --force-recreate
         --remove-orphans
-        {{ .CLI_ARGS }}
-  pnpm:
-    desc: Run pnpm
-    cmds:
-      - >
-        pnpm
-        run
-        pnpm
         {{ .CLI_ARGS }}

@@ -36,11 +36,11 @@
         ...
       }: let
         node = pkgs.nodejs;
-        pnpm = pkgs.nodePackages.pnpm;
         nil = pkgs.nil;
         task = pkgs.go-task;
         trunk = pkgs.trunk-io;
-        copier = pkgs.copier;
+        # Build copier manually, because the nixpkgs version is outdated
+        copier = pkgs.callPackage ./copier.nix {};
         tini = pkgs.tini;
         su-exec = pkgs.su-exec;
         caddy = pkgs.caddy;
@@ -68,7 +68,6 @@
 
             packages = [
               node
-              pnpm
               nil
               task
               trunk
@@ -85,7 +84,6 @@
 
             packages = [
               node
-              pnpm
               task
             ];
 
@@ -99,8 +97,6 @@
 
             packages = [
               node
-              pnpm
-              task
             ];
           };
 
@@ -128,7 +124,6 @@
 
             packages = [
               node
-              pnpm
               task
               trunk
             ];

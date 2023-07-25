@@ -19,13 +19,11 @@ concurrency:
       - "copier.yaml"
       - "*.nix"
       - "flake.lock"
-      - "src/**"
-      - "src/**"
       - "public/**"
+      - "src/**"
       - "index.html"
       - "package.json"
-      - "pnpm-lock.yaml"
-      - ".npmrc"
+      - "package-lock.json"
       - "vite.config.ts"
       - "tsconfig.json"
       - "Taskfile.dist.yaml"
@@ -40,7 +38,6 @@ jobs:
     timeout-minutes: 5
     env:
       NIX_CACHE_DIR: /home/runner/.nixcache
-      PNPM_CACHE_DIR: /home/runner/.pnpmcache
     permissions:
       # Needed to checkout code
       contents: read
@@ -51,17 +48,17 @@ jobs:
         uses: actions/cache@v3.3.1
         id: cache-nix
         with:
-          path: {{ '${{ env.NIX_CACHE_DIR }}' }}
+          path: ${{ env.NIX_CACHE_DIR }}
           key: deploy-nix
-      - name: Setup PNPM cache
+      - name: Setup modules cache
         uses: actions/cache@v3.3.1
         with:
-          path: {{ '${{ env.PNPM_CACHE_DIR }}' }}
-          key: deploy-pnpm
+          path: node_modules
+          key: deploy-modules
       - name: Install Nix
         uses: cachix/install-nix-action@v21
         with:
-          github_access_token: {{ '${{ github.token }}' }}
+          github_access_token: ${{ github.token }}
           install_url: https://releases.nixos.org/nix/nix-2.15.1/install
       # See: https://github.com/cachix/install-nix-action/issues/56
       - name: Import Nix store cache
@@ -69,11 +66,10 @@ jobs:
         run: >
           nix-store
           --import
-          < {{ '${{ env.NIX_CACHE_DIR }}' }}/archive.nar
+          < ${{ env.NIX_CACHE_DIR }}/archive.nar
       - name: Build
         env:
-          NPM_CONFIG_STORE_DIR: {{ '${{ env.PNPM_CACHE_DIR }}' }}
-          REACT_EXAMPLE_BASE_URL: "/{{ '${{ github.event.repository.name }}' }}/"
+          REACT_EXAMPLE_BASE_URL: "/${{ github.event.repository.name }}/"
           REACT_EXAMPLE_BUILD_DIR: build
         run: >
           nix
@@ -95,11 +91,11 @@ jobs:
         run: >
           mkdir
           -p
-          {{ '${{ env.NIX_CACHE_DIR }}' }}
+          ${{ env.NIX_CACHE_DIR }}
           &&
           nix-store
           --export $(find /nix/store -maxdepth 1 -name '*-*')
-          > {{ '${{ env.NIX_CACHE_DIR }}' }}/archive.nar
+          > ${{ env.NIX_CACHE_DIR }}/archive.nar
   deploy:
     name: Deploy
     # Run only if build job succeeded
@@ -111,7 +107,7 @@ jobs:
     # Use Pages environment
     environment:
       name: github-pages
-      url: {{ '${{ steps.deployment.outputs.page_url }}' }}
+      url: ${{ steps.deployment.outputs.page_url }}
     permissions:
       # Needed to to deploy to Pages
       pages: write

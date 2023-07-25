@@ -5,6 +5,10 @@
 {{ description }}
 
 [![Lint](https://github.com/{{ username }}/{{ projectname }}/actions/workflows/lint.yaml/badge.svg)](https://github.com/{{ username }}/{{ projectname }}/actions/workflows/lint.yaml)
+[![Image](https://github.com/{{ username }}/{{ projectname }}/actions/workflows/image.yaml/badge.svg)](https://github.com/{{ username }}/{{ projectname }}/actions/workflows/image.yaml)
+{%- if registry %}
+[![Registry](https://github.com/{{ username }}/{{ projectname }}/actions/workflows/registry.yaml/badge.svg)](https://github.com/{{ username }}/{{ projectname }}/actions/workflows/registry.yaml)
+{%- endif %}
 {%- if deploy %}
 [![Deploy](https://github.com/{{ username }}/{{ projectname }}/actions/workflows/deploy.yaml/badge.svg)](https://github.com/{{ username }}/{{ projectname }}/actions/workflows/deploy.yaml)
 {%- endif %}
@@ -22,5 +26,5 @@ Write here whatever you want to tell them.
 
 ## 💻 Development
 
-Read more about how to contribute and develop the project
+Read more about how to develop the project
 [here](https://github.com/{{ username }}/{{ projectname }}/blob/main/CONTRIBUTING.md).

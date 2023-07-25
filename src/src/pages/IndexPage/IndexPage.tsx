@@ -13,7 +13,6 @@ export function IndexPage({}: IndexPageProps) {
       <Head
         title={labels.pages.index.title}
         description={labels.pages.index.description}
-        favicon={labels.pages.index.favicon}
       />
       <Button size="xl" color={color} onClick={flipColor}>
         {labels.pages.index.buttons.main.label}

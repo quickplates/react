@@ -10,7 +10,6 @@ export function ErrorPage({}: ErrorPageProps) {
       <Head
         title={labels.pages.error.title}
         description={labels.pages.error.description}
-        favicon={labels.pages.error.favicon}
       />
       <PageLayout>
         <Title>{labels.pages.error.text}</Title>
