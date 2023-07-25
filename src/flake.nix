@@ -97,6 +97,7 @@
 
             packages = [
               node
+              task
             ];
           };
 
