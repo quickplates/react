@@ -18,6 +18,7 @@ def data() -> dict[str, str]:
         "releases": "true",
         "registry": "true",
         "deploy": "true",
+        "deployurl": "https://quickplates.github.io/react-example",
     }
 
 

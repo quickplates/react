@@ -34,6 +34,12 @@ deploy:
   help: Whether you want to deploy your project to GitHub Pages
   default: true
 
+deployurl:
+  type: str
+  help: The URL where your project will be deployed
+  default: "https://{{ username }}.github.io/{{ projectname }}"
+  when: "{{ deploy }}"
+
 # Configuration
 
 _subdirectory: src
