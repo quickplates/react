@@ -1,35 +1,17 @@
-import {
-  ColorScheme,
-  ColorSchemeProvider,
-  MantineProvider,
-} from "@mantine/core";
-import { useColorScheme, useLocalStorage } from "@mantine/hooks";
-import { colorSchemeStorageKey } from "../../constants";
-import { theme } from "../../theme";
+import { MantineProvider } from "@mantine/core";
+import { colorSchemeManager } from "../../config/scheme";
+import { theme } from "../../config/theme";
 import { ThemeProviderProps } from "./ThemeProvider.types";
 
-export function ThemeProvider({ children }: ThemeProviderProps) {
-  const preferredColorScheme = useColorScheme();
-  const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
-    key: colorSchemeStorageKey,
-    defaultValue: preferredColorScheme,
-  });
+import "@mantine/core/styles.css";
 
-  const toggleColorScheme = (value?: ColorScheme) =>
-    setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
-
+export function ThemeProvider(props: ThemeProviderProps) {
   return (
-    <ColorSchemeProvider
-      colorScheme={colorScheme}
-      toggleColorScheme={toggleColorScheme}
-    >
-      <MantineProvider
-        theme={{ ...theme, colorScheme: colorScheme }}
-        withGlobalStyles
-        withNormalizeCSS
-      >
-        {children}
-      </MantineProvider>
-    </ColorSchemeProvider>
+    <MantineProvider
+      theme={theme}
+      colorSchemeManager={colorSchemeManager}
+      defaultColorScheme="auto"
+      {...props}
+    />
   );
 }

@@ -5,7 +5,7 @@ import { immer } from "zustand/middleware/immer";
 import {
   stateSyncChannel as stateBroadcastChannel,
   stateStorageKey,
-} from "../constants";
+} from "../config/constants";
 import { Store } from "./store.types";
 
 type Initializer = StateCreator<Store, [["zustand/immer", never]]>;
@@ -27,5 +27,5 @@ const sharedOptions: SharedOptions = {
 };
 
 export const useStore = create<Store>()(
-  shared(persist(immer(initializer), persistOptions), sharedOptions)
+  shared(persist(immer(initializer), persistOptions), sharedOptions),
 );

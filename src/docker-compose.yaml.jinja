@@ -1,5 +1,6 @@
----
 services:
-  {{ projectname }}:
-    build: .
+  {{ appname }}:
+    build:
+      context: ./
+      network: host
     network_mode: host

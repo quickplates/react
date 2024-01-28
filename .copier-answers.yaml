@@ -1,7 +1,12 @@
----
 # Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
-_commit: 0.4.0
+_commit: 0.5.2
 _src_path: gh:quickplates/meta
-description: React project template ⚛️
-templatename: react
-username: quickplates
+accountname: quickplates
+description: React app template ⚛️
+example: true
+exampleaccountname: quickplates
+exampledescription: React app example ⚛️
+examplereponame: react-example
+reponame: react
+repourl: https://github.com/quickplates/react
+type: app

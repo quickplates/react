@@ -1,16 +1,16 @@
-<h1 align="center">{{ projectname }}</h1>
+<h1 align="center">{{ appname }} app</h1>
 
 <div align="center">
 
 {{ description }}
 
-[![Lint](https://github.com/{{ username }}/{{ projectname }}/actions/workflows/lint.yaml/badge.svg)](https://github.com/{{ username }}/{{ projectname }}/actions/workflows/lint.yaml)
-[![Image](https://github.com/{{ username }}/{{ projectname }}/actions/workflows/image.yaml/badge.svg)](https://github.com/{{ username }}/{{ projectname }}/actions/workflows/image.yaml)
+[![Lint]({{ repourl }}/actions/workflows/lint.yaml/badge.svg)]({{ repourl }}/actions/workflows/lint.yaml)
+[![Image]({{ repourl }}/actions/workflows/image.yaml/badge.svg)]({{ repourl }}/actions/workflows/image.yaml)
 {%- if registry %}
-[![Registry](https://github.com/{{ username }}/{{ projectname }}/actions/workflows/registry.yaml/badge.svg)](https://github.com/{{ username }}/{{ projectname }}/actions/workflows/registry.yaml)
+[![Registry]({{ repourl }}/actions/workflows/registry.yaml/badge.svg)]({{ repourl }}/actions/workflows/registry.yaml)
 {%- endif %}
-{%- if deploy %}
-[![Deploy](https://github.com/{{ username }}/{{ projectname }}/actions/workflows/deploy.yaml/badge.svg)](https://github.com/{{ username }}/{{ projectname }}/actions/workflows/deploy.yaml)
+{%- if docs %}
+[![Docs]({{ repourl }}/actions/workflows/docs.yaml/badge.svg)]({{ repourl }}/actions/workflows/docs.yaml)
 {%- endif %}
 
 </div>
@@ -20,18 +20,18 @@
 ## 💡 About
 
 Treat this `README.md` as the landing page for people
-that want to **use** your project.
+that want to **use** your app.
 
 Write here whatever you want to tell them.
-{%- if deploy %}
+{%- if docs %}
 
-## 🚀 Deployment
+## 📄 Further Reading
 
-You can find the deployed project
-[here]({{ deployurl }}).
+More in-depth documentation can be found
+[here]({{ docsurl }}).
 {%- endif %}
 
 ## 💻 Development
 
 Read more about how to develop the project
-[here](https://github.com/{{ username }}/{{ projectname }}/blob/main/CONTRIBUTING.md).
+[here]({{ repourl }}/blob/main/CONTRIBUTING.md).

@@ -1,6 +1,6 @@
 import { Button } from "@mantine/core";
-import { Head } from "../../components/Head";
-import { labels } from "../../labels";
+import { Head } from "../../components";
+import { labels } from "../../config/labels";
 import { useStore } from "../../store";
 import { IndexPageProps } from "./IndexPage.types";
 

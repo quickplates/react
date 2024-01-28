@@ -1,5 +1,6 @@
-import { ReactNode } from "react";
+import { MantineProviderProps } from "@mantine/core";
 
-export type ThemeProviderProps = {
-  children?: ReactNode;
-};
+export type ThemeProviderProps = Omit<
+  MantineProviderProps,
+  "theme" | "colorSchemeManager" | "defaultColorScheme"
+>;
