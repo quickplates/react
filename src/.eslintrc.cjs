@@ -3,41 +3,28 @@ module.exports = {
     // Set ES2022 environment
     es2022: true,
 
-    // Running in a browser environment
+    // Support browser globals
     browser: true,
+
+    // Support node globals
+    node: true,
   },
 
   extends: [
-    // Use recommended rules from ESLint
+    // Use recommended eslint rules
     "eslint:recommended",
 
-    // Use recommended rules for TypeScript
+    // Use recommended typescript-eslint rules
     "plugin:@typescript-eslint/recommended",
 
-    // Use recommended rules for React
+    // Use recommended React rules
     "plugin:react/recommended",
 
-    // Use recommended rules for React Hooks
-    "plugin:react-hooks/recommended",
-
-    // Turn off rules that might conflict with Prettier
+    // Use recommended docusaurus rules
     "prettier",
   ],
 
-  // Don't ignore config files
-  ignorePatterns: ["!.*"],
-
-  overrides: [
-    // Use Node.js environment for CommonJS files
-    {
-      files: ["**/*.cjs"],
-      env: {
-        node: true,
-      },
-    },
-  ],
-
-  // Use TypeScript parser
+  // Use typescript-eslint parser
   parser: "@typescript-eslint/parser",
 
   parserOptions: {
@@ -46,18 +33,12 @@ module.exports = {
   },
 
   plugins: [
-    // Use TypeScript plugin
+    // Support typescript-eslint
     "@typescript-eslint",
-
-    // Use React plugin
-    "react",
-
-    // Use React Hooks plugin
-    "react-hooks",
-
-    // Use React refresh plugin
-    "react-refresh",
   ],
+
+  // Ignore configuration files in directories above this one
+  root: true,
 
   rules: {
     // Allow empty destructuring patterns

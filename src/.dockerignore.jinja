@@ -1,5 +1,5 @@
 #Task
-/.task
+/.task/
 /Taskfile.yaml
 /Taskfile.yml
 
@@ -8,10 +8,10 @@
 .todo
 
 # Dependencies
-node_modules
+/node_modules/
 
 # Build
-/build
+/build/
 
 # Debug
 npm-debug.log*
@@ -20,18 +20,21 @@ npm-debug.log*
 *.tsbuildinfo
 
 # Tracked, but not needed
-.devcontainer
-.github
-.trunk
-.vscode
-.copier-answers.yaml
-.dockerignore
-.envrc
-.gitattributes
-.gitignore
-CONTRIBUTING.md
-docker-compose.yaml
-Dockerfile
-LICENSE
-README.md
-Taskfile.dist.yaml
+/.devcontainer/
+/.github/
+/.trunk/
+/.vscode/
+{%- if docs %}
+/docs/
+{%- endif %}
+/.copier-answers.yaml
+/.dockerignore
+/.envrc
+/.gitattributes
+/.gitignore
+/CONTRIBUTING.md
+/docker-compose.yaml
+/Dockerfile
+/LICENSE
+/README.md
+/Taskfile.dist.yaml

@@ -1,7 +1,6 @@
 import { Title } from "@mantine/core";
-import { Head } from "../../components/Head";
-import { PageLayout } from "../../components/PageLayout";
-import { labels } from "../../labels";
+import { Head, PageLayout } from "../../components";
+import { labels } from "../../config/labels";
 import { ErrorPageProps } from "./ErrorPage.types";
 
 export function ErrorPage({}: ErrorPageProps) {
