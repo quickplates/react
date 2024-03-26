@@ -53,7 +53,7 @@ jobs:
         with:
           path: node_modules/
           key: lint-modules
-      {%- if docs %}
+      {%- if pages == 'docs' %}
       - name: Setup docs modules cache
         uses: actions/cache@v4.0.1
         with:

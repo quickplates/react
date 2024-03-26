@@ -9,7 +9,9 @@
 {%- if registry %}
 [![Registry]({{ repourl }}/actions/workflows/registry.yaml/badge.svg)]({{ repourl }}/actions/workflows/registry.yaml)
 {%- endif %}
-{%- if docs %}
+{%- if pages == 'app' %}
+[![Deploy]({{ repourl }}/actions/workflows/deploy.yaml/badge.svg)]({{ repourl }}/actions/workflows/deploy.yaml)
+{%- elif pages == 'docs' %}
 [![Docs]({{ repourl }}/actions/workflows/docs.yaml/badge.svg)]({{ repourl }}/actions/workflows/docs.yaml)
 {%- endif %}
 
@@ -23,12 +25,18 @@ Treat this `README.md` as the landing page for people
 that want to **use** your app.
 
 Write here whatever you want to tell them.
-{%- if docs %}
+{%- if pages == 'app' %}
+
+## 🚀 Deployment
+
+You can find the live app deployed
+[here]({{ pagesurl }}).
+{%- elif pages == 'docs' %}
 
 ## 📄 Further Reading
 
 More in-depth documentation can be found
-[here]({{ docsurl }}).
+[here]({{ pagesurl }}).
 {%- endif %}
 
 ## 💻 Development

@@ -32,16 +32,20 @@ port:
   help: The port on which the app will listen
   default: 5173
 
-docs:
-  type: bool
-  help: Whether to include a documentation site for the app
-  default: true
-
-docsurl:
+pages:
   type: str
-  help: The URL of the documentation site for the app
+  help: What you want to host on GitHub Pages
+  choices:
+    - app
+    - docs
+    - nothing
+  default: app
+
+pagesurl:
+  type: str
+  help: The URL of the GitHub Pages site
   default: "https://{{ accountname }}.github.io/{{ reponame }}"
-  when: "{{ docs }}"
+  when: "{{ pages != 'nothing' }}"
 
 releases:
   type: bool
