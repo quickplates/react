@@ -29,7 +29,7 @@ tasks:
   fmt:
     desc: Format files
     cmds:
-      {%- if docs %}
+      {%- if pages == 'docs' %}
       - task: install-docs-internal
       {%- endif %}
       - task: install-internal
@@ -40,7 +40,7 @@ tasks:
   lint:
     desc: Lint files
     cmds:
-      {%- if docs %}
+      {%- if pages == 'docs' %}
       - task: install-docs-internal
       {%- endif %}
       - task: install-internal
@@ -48,7 +48,7 @@ tasks:
         trunk
         check
         {{ '{{ .CLI_ARGS }}' }}
-  {%- if docs %}
+  {%- if pages == 'docs' %}
   remove-docs-node-modules:
     desc: Clean docs node_modules
     dir: docs/

@@ -1,6 +1,6 @@
 # Mark everything as vendored
 * linguist-vendored
-{%- if docs %}
+{%- if pages == 'docs' %}
 # Treat docs as documentation
 /docs/** -linguist-vendored linguist-documentation
 {%- endif %}

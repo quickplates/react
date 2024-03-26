@@ -154,7 +154,7 @@
               export TMPDIR=/tmp
             '';
           };
-          {%- if docs %}
+          {%- if pages == 'docs' %}
 
           docs = pkgs.mkShell {
             name = "docs";
