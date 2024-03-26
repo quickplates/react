@@ -93,4 +93,4 @@ ENTRYPOINT ["/app/scripts/entrypoint.sh", "caddy", "file-server", "--root", "bui
 CMD []
 
 # Setup ownership
-RUN chown -R app: /app/
+RUN chown --recursive app: ./
