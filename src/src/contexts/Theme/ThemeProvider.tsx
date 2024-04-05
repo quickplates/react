@@ -4,6 +4,7 @@ import { theme } from "../../config/theme";
 import { ThemeProviderProps } from "./ThemeProvider.types";
 
 import "@mantine/core/styles.css";
+import "@mantine/notifications/styles.css";
 
 export function ThemeProvider(props: ThemeProviderProps) {
   return (
