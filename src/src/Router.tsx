@@ -1,5 +1,5 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import { ErrorPage, IndexPage, Root } from "./pages";
+import { ErrorPage, IndexPage, NotFoundPage, Root } from "./pages";
 
 const router = createBrowserRouter(
   [
@@ -13,6 +13,11 @@ const router = createBrowserRouter(
           element: <IndexPage />,
         },
       ],
+    },
+    {
+      path: "*",
+      element: <NotFoundPage />,
+      errorElement: <ErrorPage />,
     },
   ],
   {
