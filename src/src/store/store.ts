@@ -1,11 +1,8 @@
-import { shared, SharedOptions } from "use-broadcast-ts";
-import { create, StateCreator } from "zustand";
-import { persist, PersistOptions } from "zustand/middleware";
+import { useEffect, useState } from "react";
+import { StateCreator, create } from "zustand";
+import { PersistOptions, persist } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
-import {
-  stateSyncChannel as stateBroadcastChannel,
-  stateStorageKey,
-} from "../config/constants";
+import { stateStorageKey } from "../config/constants";
 import { Store } from "./store.types";
 
 type Initializer = StateCreator<Store, [["zustand/immer", never]]>;
@@ -22,10 +19,40 @@ const persistOptions: PersistOptions<Store> = {
   name: stateStorageKey,
 };
 
-const sharedOptions: SharedOptions = {
-  name: stateBroadcastChannel,
-};
-
-export const useStore = create<Store>()(
-  shared(persist(immer(initializer), persistOptions), sharedOptions),
+const useStoreInternal = create<Store>()(
+  persist(immer(initializer), persistOptions),
 );
+
+export const useStore = <V>(selector: (state: Store) => V) => {
+  const value = useStoreInternal(selector);
+  const [hydrated, setHydrated] = useState(false);
+
+  const persist = useStoreInternal.persist;
+
+  useEffect(() => {
+    const unsubHydrate = persist.onHydrate(() => setHydrated(false));
+    const unsubFinishHydration = persist.onFinishHydration(() =>
+      setHydrated(true),
+    );
+
+    setHydrated(persist.hasHydrated());
+
+    return () => {
+      unsubHydrate();
+      unsubFinishHydration();
+    };
+  }, [persist]);
+
+  useEffect(() => {
+    const handleStorageEvent = (e: StorageEvent) =>
+      e.newValue && e.key === persist.getOptions().name && persist.rehydrate();
+
+    window.addEventListener("storage", handleStorageEvent);
+
+    return () => {
+      window.removeEventListener("storage", handleStorageEvent);
+    };
+  }, [persist]);
+
+  return [value, hydrated] as const;
+};
