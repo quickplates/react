@@ -20,7 +20,7 @@ module.exports = {
     // Use recommended React rules
     "plugin:react/recommended",
 
-    // Use recommended docusaurus rules
+    // Turn off rules that might conflict with Prettier
     "prettier",
   ],
 
