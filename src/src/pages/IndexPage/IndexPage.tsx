@@ -5,8 +5,8 @@ import { useStore } from "../../store";
 import { IndexPageProps } from "./IndexPage.types";
 
 export function IndexPage({}: IndexPageProps) {
-  const color = useStore((state) => state.color);
-  const flipColor = useStore((state) => state.flipColor);
+  const [color, hydrated] = useStore((state) => state.color);
+  const [flipColor] = useStore((state) => state.flipColor);
 
   return (
     <>
@@ -14,7 +14,12 @@ export function IndexPage({}: IndexPageProps) {
         title={labels.pages.index.title}
         description={labels.pages.index.description}
       />
-      <Button size="xl" color={color} onClick={flipColor}>
+      <Button
+        loading={!hydrated}
+        size="xl"
+        color={hydrated ? color : undefined}
+        onClick={hydrated ? flipColor : undefined}
+      >
         {labels.pages.index.buttons.main.label}
       </Button>
     </>
