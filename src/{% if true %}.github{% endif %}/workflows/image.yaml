@@ -21,6 +21,7 @@ name: Image
       - index.html
       - package-lock.json
       - package.json
+      - postcss.config.mjs
       - tsconfig.json
       - vite.config.mts
   # Run also on pull requests to main branch
@@ -40,6 +41,7 @@ name: Image
       - index.html
       - package-lock.json
       - package.json
+      - postcss.config.mjs
       - tsconfig.json
       - vite.config.mts
 
