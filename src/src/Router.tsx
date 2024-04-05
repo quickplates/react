@@ -1,7 +1,7 @@
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { RouterProvider, createHashRouter } from "react-router-dom";
 import { ErrorPage, IndexPage, NotFoundPage, Root } from "./pages";
 
-const router = createBrowserRouter(
+const router = createHashRouter(
   [
     {
       path: "/",
