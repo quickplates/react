@@ -1,4 +1,5 @@
 import { MantineProvider } from "@mantine/core";
+import { defaultColorScheme } from "../../config/constants";
 import { colorSchemeManager } from "../../config/scheme";
 import { theme } from "../../config/theme";
 import { ThemeProviderProps } from "./ThemeProvider.types";
@@ -11,7 +12,7 @@ export function ThemeProvider(props: ThemeProviderProps) {
     <MantineProvider
       theme={theme}
       colorSchemeManager={colorSchemeManager}
-      defaultColorScheme="auto"
+      defaultColorScheme={defaultColorScheme}
       {...props}
     />
   );
