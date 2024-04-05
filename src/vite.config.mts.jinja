@@ -8,7 +8,10 @@ export default defineConfig({
   },
   plugins: [react()],
   server: {
-    host: "0.0.0.0",
-    port: {{ port }},
+    host: process.env.{{ envprefix }}__SERVER__HOST || "0.0.0.0",
+    port:
+      process.env.{{ envprefix }}__SERVER__PORT === undefined
+        ? {{ port }}
+        : parseInt(process.env.{{ envprefix }}__SERVER__PORT, 10),
   },
 });
