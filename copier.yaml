@@ -32,6 +32,16 @@ port:
   help: The port on which the app will listen
   default: 5173
 
+paths:
+  type: bool
+  help: Whether you can use paths in the URL
+  default: true
+
+keyprefix:
+  type: str
+  help: The prefix for various keys used in the app (e.g. for storage)
+  default: "{{ appname | lower | replace('_', '-') }}"
+
 pages:
   type: str
   help: What you want to host on GitHub Pages

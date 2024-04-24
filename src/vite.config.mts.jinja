@@ -1,6 +1,12 @@
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 
+const host = process.env.{{ envprefix }}__SERVER__HOST || "0.0.0.0";
+const port =
+  process.env.{{ envprefix }}__SERVER__PORT === undefined
+    ? {{ port }}
+    : parseInt(process.env.{{ envprefix }}__SERVER__PORT, 10);
+
 // https://vitejs.dev/config/
 export default defineConfig({
   build: {
@@ -8,10 +14,7 @@ export default defineConfig({
   },
   plugins: [react()],
   server: {
-    host: process.env.{{ envprefix }}__SERVER__HOST || "0.0.0.0",
-    port:
-      process.env.{{ envprefix }}__SERVER__PORT === undefined
-        ? {{ port }}
-        : parseInt(process.env.{{ envprefix }}__SERVER__PORT, 10),
+    host: host,
+    port: port,
   },
 });

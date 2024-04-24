@@ -1,10 +1,10 @@
 module.exports = {
   env: {
-    // Set ES2022 environment
-    es2022: true,
-
     // Support browser globals
     browser: true,
+
+    // Set ES2022 environment
+    es2022: true,
 
     // Support node globals
     node: true,
@@ -41,6 +41,12 @@ module.exports = {
   root: true,
 
   rules: {
+    // Allow anonymous default exports
+    "import/no-anonymous-default-export": "off",
+
+    // Allow empty block statements
+    "no-empty": "off",
+
     // Allow empty destructuring patterns
     "no-empty-pattern": "off",
 

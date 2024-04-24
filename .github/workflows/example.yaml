@@ -74,6 +74,8 @@ jobs:
           'reponame=react-example'
           --data
           'description=React app example ⚛️'
+          --data
+          'paths=false'
       # Create archive to retain file permissions
       - name: Create archive
         run: >
