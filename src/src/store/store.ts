@@ -3,7 +3,7 @@ import { StateCreator, create } from "zustand";
 import { PersistOptions, persist } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
 import { stateStorageKey } from "../config/constants";
-import { Store } from "./store.types";
+import { Store } from "./types";
 
 type Initializer = StateCreator<Store, [["zustand/immer", never]]>;
 

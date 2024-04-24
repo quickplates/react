@@ -19,6 +19,8 @@ def data() -> dict[str, str]:
         "repourl": "https://github.com/foo/app-foo",
         "envprefix": "FOO",
         "port": "5173",
+        "paths": "true",
+        "keyprefix": "foo",
         "pages": "app",
         "pagesurl": "https://foo.github.io/app-foo",
         "releases": "true",
