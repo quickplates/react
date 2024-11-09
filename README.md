@@ -48,6 +48,7 @@ copier copy gh:quickplates/react .
 - routing with [`React Router`](https://reactrouter.com)
 - state management with [`Zustand`](https://docs.pmnd.rs/zustand)
 - clean UI with [`Mantine`](https://mantine.dev)
+- i18n with [`Lingui`](https://lingui.dev)
 
 ## 💻 Development
 
