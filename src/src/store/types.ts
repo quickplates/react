@@ -1,9 +1,16 @@
-export type State = {
+import { StateCreator } from "zustand";
+import { PersistOptions } from "zustand/middleware";
+
+type StoreState = {
   color: "red" | "green";
 };
 
-export type Actions = {
+type StoreActions = {
   flipColor: () => void;
 };
 
-export type Store = State & Actions;
+export type Store = StoreState & StoreActions;
+
+export type StoreInitializer = StateCreator<Store, [["zustand/immer", never]]>;
+
+export type StorePersistOptions = PersistOptions<Store>;

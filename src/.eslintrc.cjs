@@ -17,8 +17,14 @@ module.exports = {
     // Use recommended typescript-eslint rules
     "plugin:@typescript-eslint/recommended",
 
+    // Use stylistic typescript-eslint rules
+    "plugin:@typescript-eslint/stylistic",
+
     // Use recommended React rules
     "plugin:react/recommended",
+
+    // Use recommended Lingui rules
+    "plugin:lingui/recommended",
 
     // Turn off rules that might conflict with Prettier
     "prettier",
@@ -41,6 +47,15 @@ module.exports = {
   root: true,
 
   rules: {
+    // Use objects instead of records for empty types
+    "@typescript-eslint/consistent-indexed-object-style": [
+      "error",
+      "index-signature",
+    ],
+
+    // Use types instead of interfaces
+    "@typescript-eslint/consistent-type-definitions": ["error", "type"],
+
     // Allow anonymous default exports
     "import/no-anonymous-default-export": "off",
 

@@ -1,0 +1,10 @@
+import { {{ 'createBrowserRouter' if pages else 'createHashRouter' }}, RouterProvider } from "react-router-dom";
+import { routes } from "../app/routes";
+import { options } from "./options";
+import { RouterInput } from "./types";
+
+const router = {{ 'createBrowserRouter' if pages else 'createHashRouter' }}(routes, options);
+
+export function Router({}: RouterInput) {
+  return <RouterProvider router={router} />;
+}

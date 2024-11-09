@@ -204,6 +204,7 @@ tasks:
       - flake.lock
       - "*.nix"
       - index.html
+      - lingui.config.ts
       - package-lock.json
       - package.json
       - postcss.config.mjs
@@ -225,6 +226,15 @@ tasks:
     cmds:
       - task: install-internal
       - task: build-internal
+  locales:
+    desc: Extract locales
+    cmds:
+      - >
+        npm
+        run
+        --
+        locales
+        {{ '{{ .CLI_ARGS }}' }}
   dev:
     desc: Run in development mode
     interactive: true
