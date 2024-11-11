@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
-import { storageKey } from "./constants";
+import { stateStorageKey } from "../constants";
 import { Store, StoreInitializer, StorePersistOptions } from "./types";
 
 const initializer: StoreInitializer = (set) => ({
@@ -13,7 +13,7 @@ const initializer: StoreInitializer = (set) => ({
 });
 
 const persistOptions: StorePersistOptions = {
-  name: storageKey,
+  name: stateStorageKey,
 };
 
 export const store = create<Store>()(

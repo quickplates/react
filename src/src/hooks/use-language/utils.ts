@@ -1,4 +1,4 @@
-import { defaultLanguage } from "./constants";
+import { defaultUserLanguage } from "../../constants";
 
 export function subscribeLanguageChange(callback: () => void) {
   window.addEventListener("languagechange", callback);
@@ -10,5 +10,5 @@ export function getCurrentLanguage() {
 }
 
 export function getDefaultLanguage() {
-  return defaultLanguage;
+  return defaultUserLanguage;
 }

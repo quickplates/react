@@ -1,2 +1,2 @@
-export { UseLanguage } from "./main";
+export { useLanguage } from "./main";
 export type { UseLanguageInput, UseLanguageOutput } from "./types";
