@@ -6,7 +6,7 @@ import {
   subscribeLanguageChange,
 } from "./utils";
 
-export function UseLanguage({}: UseLanguageInput = {}): UseLanguageOutput {
+export function useLanguage({}: UseLanguageInput = {}): UseLanguageOutput {
   const language = useSyncExternalStore(
     subscribeLanguageChange,
     getCurrentLanguage,
