@@ -1,4 +1,5 @@
 import { Outlet } from "react-router-dom";
+
 import { PageLayout } from "../components/layouts/page-layout";
 import { I18nProvider } from "../providers/i18n-provider";
 import { ThemeProvider } from "../providers/theme-provider";

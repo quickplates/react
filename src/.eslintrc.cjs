@@ -26,6 +26,9 @@ module.exports = {
     // Use recommended Lingui rules
     "plugin:lingui/recommended",
 
+    // Use recommended perfectionist rules
+    "plugin:perfectionist/recommended-alphabetical-legacy",
+
     // Turn off rules that might conflict with Prettier
     "prettier",
   ],
@@ -39,8 +42,11 @@ module.exports = {
   },
 
   plugins: [
-    // Support typescript-eslint
+    // Use @typescript-eslint plugin
     "@typescript-eslint",
+
+    // Use perfectionist plugin
+    "perfectionist",
   ],
 
   // Ignore configuration files in directories above this one

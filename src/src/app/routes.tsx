@@ -1,4 +1,5 @@
 import { RouteObject } from "react-router-dom";
+
 import { RootError } from "./error";
 import { RootLayout } from "./layout";
 import { RootNotFound } from "./not-found";

@@ -8,14 +8,14 @@ export function useDocumentMetadata({
   title,
 }: UseDocumentMetadataInput): void {
   useElementAttribute({
-    selector: "meta[name='description']",
     attribute: "content",
+    selector: "meta[name='description']",
     value: description,
   });
 
   useElementAttribute({
-    selector: "html",
     attribute: "lang",
+    selector: "html",
     value: language,
   });
 

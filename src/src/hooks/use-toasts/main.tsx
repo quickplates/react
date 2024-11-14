@@ -2,6 +2,7 @@ import { msg } from "@lingui/macro";
 import { useLingui } from "@lingui/react";
 import { showNotification } from "@mantine/notifications";
 import { useCallback, useMemo } from "react";
+
 import { colors, icons } from "./constants";
 import { Toast, UseToastsInput, UseToastsOutput } from "./types";
 
