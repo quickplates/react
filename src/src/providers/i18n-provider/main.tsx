@@ -1,6 +1,7 @@
 import { i18n } from "@lingui/core";
 import { I18nProvider as InternalI18nProvider } from "@lingui/react";
 import { useEffect, useState } from "react";
+
 import { defaultLocale } from "../../constants";
 import { useDocumentMetadata } from "../../hooks/use-document-metadata";
 import { useLanguage } from "../../hooks/use-language";

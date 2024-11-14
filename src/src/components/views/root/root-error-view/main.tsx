@@ -1,6 +1,7 @@
 import { msg } from "@lingui/macro";
 import { useLingui } from "@lingui/react";
 import { Title } from "@mantine/core";
+
 import { RootErrorViewInput } from "./types";
 
 export function RootErrorView({}: RootErrorViewInput) {

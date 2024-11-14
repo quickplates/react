@@ -1,8 +1,8 @@
 import { Box } from "@mantine/core";
 import { Notifications } from "@mantine/notifications";
-import { PageLayoutInput } from "./types";
 
 import classes from "./styles.module.css";
+import { PageLayoutInput } from "./types";
 
 export function PageLayout({ children }: PageLayoutInput) {
   return (

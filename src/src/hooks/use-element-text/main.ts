@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+
 import { UseElementTextInput } from "./types";
 
 export function useElementText({ selector, text }: UseElementTextInput): void {

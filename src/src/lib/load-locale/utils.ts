@@ -1,4 +1,5 @@
 import { I18n, Messages } from "@lingui/core";
+
 import { defaultLocale } from "../../constants";
 
 export function getLocale(language: string) {

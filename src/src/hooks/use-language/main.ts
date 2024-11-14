@@ -1,4 +1,5 @@
 import { useMemo, useSyncExternalStore } from "react";
+
 import { UseLanguageInput, UseLanguageOutput } from "./types";
 import {
   getCurrentLanguage,

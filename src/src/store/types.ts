@@ -2,14 +2,14 @@ import { StateCreator } from "zustand";
 import { PersistOptions } from "zustand/middleware";
 
 type StoreState = {
-  color: "red" | "green";
+  color: "green" | "red";
 };
 
 type StoreActions = {
   flipColor: () => void;
 };
 
-export type Store = StoreState & StoreActions;
+export type Store = StoreActions & StoreState;
 
 export type StoreInitializer = StateCreator<Store, [["zustand/immer", never]]>;
 
