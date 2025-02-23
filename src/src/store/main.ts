@@ -7,10 +7,11 @@ import { Store, StoreInitializer, StorePersistOptions } from "./types";
 
 const initializer: StoreInitializer = (set) => ({
   color: "red",
-  flipColor: () =>
+  flipColor: () => {
     set((state) => {
       state.color = state.color === "red" ? "green" : "red";
-    }),
+    });
+  },
 });
 
 const persistOptions: StorePersistOptions = {
