@@ -1,9 +1,12 @@
+import { FlatCompat } from "@eslint/eslintrc";
 import eslint from "@eslint/js";
-import linguieslint from "eslint-plugin-lingui";
 import perfectionisteslint from "eslint-plugin-perfectionist";
-import reacteslint from "eslint-plugin-react";
 import globals from "globals";
 import tseslint from "typescript-eslint";
+
+const compat = new FlatCompat({
+  baseDirectory: import.meta.dirname,
+});
 
 export default tseslint.config(
   // Use recommended eslint rules
@@ -15,14 +18,8 @@ export default tseslint.config(
   // Use stylistic type-checked typescript-eslint rules
   tseslint.configs.stylisticTypeChecked,
 
-  // Use recommended React rules
-  reacteslint.configs.flat.recommended,
-
-  // Make React rules compatible with JSX
-  reacteslint.configs.flat["jsx-runtime"],
-
-  // Use recommended Lingui rules
-  linguieslint.configs["flat/recommended"],
+  // Use recommended Docusaurus rules
+  ...compat.extends("plugin:@docusaurus/recommended"),
 
   // Use recommended perfectionist rules
   perfectionisteslint.configs["recommended-alphabetical"],
@@ -104,12 +101,5 @@ export default tseslint.config(
       // Don't sort module members
       "perfectionist/sort-modules": "off",
     },
-  },
-
-  // Disable type-aware linting for files outside of the project
-  {
-    extends: [tseslint.configs.disableTypeChecked],
-    files: ["**/*"],
-    ignores: ["src/**/*"],
   },
 );
