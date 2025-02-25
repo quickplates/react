@@ -17,7 +17,7 @@ export function getLocale(language: string) {
 
 export async function tryImport(locale: string) {
   try {
-    const imported = await import(`../../locales/${locale}.po`);
+    const imported = (await import(`../../locales/${locale}.po`)) as unknown;
     return imported as { messages: Messages };
   } catch {
     return null;

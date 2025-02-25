@@ -93,6 +93,7 @@ export default tseslint.config(
   // Disable type-aware linting for files outside of the project
   {
     extends: [tseslint.configs.disableTypeChecked],
+    files: ["**/*"],
     ignores: ["src/**/*"],
   },
 );
